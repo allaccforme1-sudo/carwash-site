@@ -2,20 +2,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* حذف هایلایت طوسی موقع لمس دکمه‌ها در موبایل */
     -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
     width: 100%;
-    /* استفاده از dvh برای حل مشکل نوار پایین سافاری آیفون */
-    height: 100dvh; 
+    height: 100dvh;
     overflow: hidden;
     font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
     background: #000;
 }
 
-/* عکس تمام صفحه - کامل و بدون برش */
 .fullscreen-bg {
     position: relative;
     width: 100vw;
@@ -37,65 +34,75 @@ html, body {
     image-rendering: high-quality;
     -webkit-user-drag: none;
     user-select: none;
-    pointer-events: none; /* جلوگیری از زوم یا درگ شدن عکس در موبایل */
+    pointer-events: none;
 }
 
-/* دکمه‌ها ثابت روی عکس - پایین وسط */
+/* دکمه‌ها - زیر هم با استایل خفن */
 .buttons-container {
     position: absolute;
-    bottom: 40px;
+    bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
+    flex-direction: column;
     gap: 20px;
     z-index: 10;
-    width: 90%;
-    max-width: 500px;
-    /* فاصله امن برای آیفون‌های ناچ‌دار */
+    width: 85%;
+    max-width: 350px;
     padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* استایل دکمه‌ها */
 .btn {
     position: relative;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 15px 35px;
-    border-radius: 50px;
+    gap: 12px;
+    padding: 18px 30px;
+    border-radius: 16px;
     text-decoration: none;
-    font-size: 1.05em;
-    font-weight: bold;
+    font-size: 1.1em;
+    font-weight: 700;
     color: white;
     overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    border: 2px solid rgba(255,255,255,0.15);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* برای پشتیبانی بهتر سافاری */
-    border: 1px solid rgba(255,255,255,0.2);
-    flex: 1; /* دکمه‌ها عرض مساوی داشته باشن */
+    -webkit-backdrop-filter: blur(10px);
 }
 
-.btn:active {
-    transform: scale(0.95); /* افکت فشرده شدن دکمه موقع لمس */
-}
-
+/* آیکون */
 .btn-icon {
-    font-size: 1.2em;
+    font-size: 1.4em;
+    transition: transform 0.3s ease;
 }
 
+/* متن */
 .btn-text {
     letter-spacing: 1px;
+    text-transform: capitalize;
 }
 
-/* رنگ دکمه‌ها */
+/* اینستاگرام */
 .instagram {
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
 }
 
+/* لوکیشن */
 .location {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* افکت hover */
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    border-color: rgba(255,255,255,0.3);
+}
+
+.btn:hover .btn-icon {
+    transform: scale(1.2) rotate(5deg);
 }
 
 /* افکت shine */
@@ -106,25 +113,40 @@ html, body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s ease;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s ease;
 }
 
 .btn:hover::before {
     left: 100%;
 }
 
-/* ریسپانسیو موبایل */
+/* افکت کلیک */
+.btn:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+/* ریسپانسیو */
 @media (max-width: 480px) {
     .buttons-container {
-        flex-direction: column;
-        bottom: 30px;
+        bottom: 40px;
+        width: 80%;
         gap: 15px;
     }
     
     .btn {
-        width: 100%;
-        padding: 14px 25px;
+        padding: 16px 25px;
         font-size: 1em;
+    }
+}
+
+@media (max-width: 360px) {
+    .buttons-container {
+        bottom: 30px;
+    }
+    
+    .btn {
+        padding: 14px 20px;
+        font-size: 0.95em;
     }
 }
