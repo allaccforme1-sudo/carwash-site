@@ -37,7 +37,7 @@ html, body {
     pointer-events: none;
 }
 
-/* دکمه‌ها - زیر هم با استایل خفن */
+/* دکمه‌ها - زیر هم */
 .buttons-container {
     position: absolute;
     bottom: 60px;
@@ -45,10 +45,10 @@ html, body {
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     z-index: 10;
-    width: 85%;
-    max-width: 350px;
+    width: 70%;
+    max-width: 280px;
     padding-bottom: env(safe-area-inset-bottom);
 }
 
@@ -57,55 +57,50 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 18px 30px;
-    border-radius: 16px;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 12px;
     text-decoration: none;
-    font-size: 1.1em;
+    font-size: 0.95em;
     font-weight: 700;
     color: white;
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-    border: 2px solid rgba(255,255,255,0.15);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(255,255,255,0.2);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-}
-
-/* آیکون */
-.btn-icon {
-    font-size: 1.4em;
-    transition: transform 0.3s ease;
-}
-
-/* متن */
-.btn-text {
-    letter-spacing: 1px;
-    text-transform: capitalize;
+    /* انیمیشن شناور */
+    animation: float 3s ease-in-out infinite;
 }
 
 /* اینستاگرام */
 .instagram {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    background-size: 200% 200%;
+    animation: float 3s ease-in-out infinite, gradientShift 3s ease infinite;
+    animation-delay: 0s, 0s;
 }
 
 /* لوکیشن */
 .location {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    background-size: 200% 200%;
+    animation: float 3s ease-in-out infinite, gradientShift 3s ease infinite;
+    animation-delay: 0.5s, 1.5s;
 }
 
-/* افکت hover */
-.btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    border-color: rgba(255,255,255,0.3);
+/* آیکون */
+.btn-icon {
+    font-size: 1.2em;
+    transition: all 0.3s ease;
 }
 
-.btn:hover .btn-icon {
-    transform: scale(1.2) rotate(5deg);
+/* متن */
+.btn-text {
+    letter-spacing: 0.5px;
 }
 
-/* افکت shine */
+/* افکت درخشش متحرک */
 .btn::before {
     content: '';
     position: absolute;
@@ -113,40 +108,112 @@ html, body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: left 0.6s ease;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.6),
+        transparent
+    );
+    transition: left 0.7s ease;
+}
+
+/* افکت glow */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+/* hover effects */
+.btn:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5), 
+                0 0 30px rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.5);
 }
 
 .btn:hover::before {
     left: 100%;
 }
 
-/* افکت کلیک */
+.btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:hover .btn-icon {
+    transform: scale(1.3) rotate(360deg);
+}
+
+/* کلیک */
 .btn:active {
-    transform: translateY(-2px) scale(0.98);
+    transform: translateY(-3px) scale(0.98);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+/* انیمیشن شناور */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* انیمیشن تغییر گرادیان */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* پالس برای دکمه‌ها */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    50% {
+        box-shadow: 0 5px 35px rgba(255,255,255,0.4);
+    }
 }
 
 /* ریسپانسیو */
 @media (max-width: 480px) {
     .buttons-container {
         bottom: 40px;
-        width: 80%;
-        gap: 15px;
+        width: 65%;
+        max-width: 250px;
+        gap: 12px;
     }
     
     .btn {
-        padding: 16px 25px;
-        font-size: 1em;
+        padding: 11px 24px;
+        font-size: 0.9em;
     }
 }
 
 @media (max-width: 360px) {
     .buttons-container {
         bottom: 30px;
+        width: 70%;
     }
     
     .btn {
-        padding: 14px 20px;
-        font-size: 0.95em;
+        padding: 10px 22px;
+        font-size: 0.85em;
     }
 }
