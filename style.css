@@ -20,15 +20,65 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+    background: linear-gradient(180deg, #0a0a1a 0%, #1a2a3a 50%, #0a1520 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9999;
+    overflow: hidden;
 }
 
+/* ===== موج‌های آب ===== */
+.waves-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+}
+
+/* موج اول - سریع‌ترین */
+.wave-1 {
+    animation: waveMove 6s linear infinite;
+    z-index: 3;
+}
+
+/* موج دوم - متوسط */
+.wave-2 {
+    animation: waveMove 8s linear infinite;
+    z-index: 2;
+}
+
+/* موج سوم - کندترین */
+.wave-3 {
+    animation: waveMove 10s linear infinite;
+    z-index: 1;
+}
+
+@keyframes waveMove {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* محتوای لودینگ */
 .loading-content {
     text-align: center;
+    position: relative;
+    z-index: 10;
 }
 
 /* ماشین متحرک */
@@ -54,7 +104,7 @@ html, body {
         transform: translate(-50%, -50%) translateY(0px);
     }
     50% {
-        transform: translate(-50%, -50%) translateY(-5px);
+        transform: translate(-50%, -50%) translateY(-8px);
     }
 }
 
@@ -70,40 +120,16 @@ html, body {
 
 .drop {
     position: absolute;
-    font-size: 20px;
+    font-size: 18px;
     opacity: 0;
     animation: waterDrop 1.5s ease-in-out infinite;
 }
 
-.drop:nth-child(1) {
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.drop:nth-child(2) {
-    top: 30%;
-    right: 15%;
-    animation-delay: 0.3s;
-}
-
-.drop:nth-child(3) {
-    top: 50%;
-    left: 5%;
-    animation-delay: 0.6s;
-}
-
-.drop:nth-child(4) {
-    top: 40%;
-    right: 10%;
-    animation-delay: 0.9s;
-}
-
-.drop:nth-child(5) {
-    top: 60%;
-    left: 20%;
-    animation-delay: 1.2s;
-}
+.drop:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+.drop:nth-child(2) { top: 30%; right: 15%; animation-delay: 0.3s; }
+.drop:nth-child(3) { top: 50%; left: 5%; animation-delay: 0.6s; }
+.drop:nth-child(4) { top: 40%; right: 10%; animation-delay: 0.9s; }
+.drop:nth-child(5) { top: 60%; left: 20%; animation-delay: 1.2s; }
 
 @keyframes waterDrop {
     0% {
@@ -134,12 +160,8 @@ html, body {
 }
 
 @keyframes textPulse {
-    0%, 100% {
-        opacity: 0.6;
-    }
-    50% {
-        opacity: 1;
-    }
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
 }
 
 /* نوار پیشرفت */
@@ -155,18 +177,14 @@ html, body {
 .loading-progress {
     width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, #d4af37, #f4d03f, #d4af37);
+    background: linear-gradient(90deg, #40a4ff, #64b4ff, #96d2ff);
     border-radius: 2px;
-    animation: loadingProgress 2.5s ease-in-out forwards;
+    animation: loadingProgress 3s ease-in-out forwards;
 }
 
 @keyframes loadingProgress {
-    0% {
-        width: 0%;
-    }
-    100% {
-        width: 100%;
-    }
+    0% { width: 0%; }
+    100% { width: 100%; }
 }
 
 /* ===== محتوای اصلی سایت ===== */
@@ -194,7 +212,7 @@ html, body {
     pointer-events: none;
 }
 
-/* دکمه‌ها - کنار هم */
+/* دکمه‌ها */
 .buttons-container {
     position: absolute;
     bottom: 60px;
@@ -207,7 +225,6 @@ html, body {
     padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* دکمه شیشه‌ای با حاشیه طلایی */
 .btn {
     position: relative;
     display: flex;
@@ -250,12 +267,7 @@ html, body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(212, 175, 55, 0.3),
-        transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
     transition: left 0.7s ease;
 }
 
@@ -266,11 +278,7 @@ html, body {
     left: 0;
     right: 0;
     height: 50%;
-    background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.15) 0%,
-        transparent 100%
-    );
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
     border-radius: 50% 50% 0 0;
     pointer-events: none;
 }
@@ -300,15 +308,11 @@ html, body {
 }
 
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
 }
 
-/* ریسپانسیو موبایل */
+/* ریسپانسیو */
 @media (max-width: 480px) {
     .buttons-container {
         bottom: 40px;
@@ -341,6 +345,10 @@ html, body {
     
     .loading-text {
         font-size: 0.95em;
+    }
+    
+    .waves-container {
+        height: 30%;
     }
 }
 
