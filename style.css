@@ -13,6 +13,163 @@ html, body {
     background: #000;
 }
 
+/* ===== صفحه لودینگ ===== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+/* ماشین متحرک */
+.car-container {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    margin: 0 auto 30px;
+}
+
+.car {
+    width: 120px;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: carDrive 2s ease-in-out infinite;
+}
+
+@keyframes carDrive {
+    0%, 100% {
+        transform: translate(-50%, -50%) translateY(0px);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateY(-5px);
+    }
+}
+
+/* قطرات آب */
+.water-drops {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.drop {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0;
+    animation: waterDrop 1.5s ease-in-out infinite;
+}
+
+.drop:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.drop:nth-child(2) {
+    top: 30%;
+    right: 15%;
+    animation-delay: 0.3s;
+}
+
+.drop:nth-child(3) {
+    top: 50%;
+    left: 5%;
+    animation-delay: 0.6s;
+}
+
+.drop:nth-child(4) {
+    top: 40%;
+    right: 10%;
+    animation-delay: 0.9s;
+}
+
+.drop:nth-child(5) {
+    top: 60%;
+    left: 20%;
+    animation-delay: 1.2s;
+}
+
+@keyframes waterDrop {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.5);
+    }
+}
+
+/* متن لودینگ */
+.loading-text {
+    color: white;
+    font-size: 1.1em;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.loading-text p {
+    margin-bottom: 15px;
+    animation: textPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* نوار پیشرفت */
+.loading-bar {
+    width: 200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.loading-progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #d4af37, #f4d03f, #d4af37);
+    border-radius: 2px;
+    animation: loadingProgress 2.5s ease-in-out forwards;
+}
+
+@keyframes loadingProgress {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/* ===== محتوای اصلی سایت ===== */
 .fullscreen-bg {
     position: relative;
     width: 100vw;
@@ -63,15 +220,12 @@ html, body {
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     
-    /* پس‌زمینه شیشه‌ای مات */
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     
-    /* حاشیه طلایی ظریف */
     border: 1.5px solid rgba(212, 175, 55, 0.5);
     
-    /* سایه نرم */
     box-shadow: 
         0 8px 20px rgba(0, 0, 0, 0.4),
         inset 0 1px 1px rgba(255, 255, 255, 0.1);
@@ -79,7 +233,6 @@ html, body {
     animation: float 3s ease-in-out infinite;
 }
 
-/* آیکون SVG - سفید و تمیز */
 .btn svg {
     width: 29px;
     height: 29px;
@@ -90,7 +243,6 @@ html, body {
     filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
 }
 
-/* افکت درخشش متحرک */
 .btn::before {
     content: '';
     position: absolute;
@@ -107,7 +259,6 @@ html, body {
     transition: left 0.7s ease;
 }
 
-/* لایه براق شیشه‌ای */
 .btn::after {
     content: '';
     position: absolute;
@@ -124,7 +275,6 @@ html, body {
     pointer-events: none;
 }
 
-/* حالت هاور */
 .btn:hover {
     transform: translateY(-8px) scale(1.15);
     background: rgba(255, 255, 255, 0.15);
@@ -140,17 +290,15 @@ html, body {
 }
 
 .btn:hover svg {
-    stroke: #d4af37; /* طلایی */
+    stroke: #d4af37;
     transform: scale(1.1) rotate(5deg);
     filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5));
 }
 
-/* حالت کلیک */
 .btn:active {
     transform: translateY(-3px) scale(1.05);
 }
 
-/* انیمیشن شناور */
 @keyframes float {
     0%, 100% {
         transform: translateY(0px);
@@ -175,6 +323,24 @@ html, body {
     .btn svg {
         width: 26px;
         height: 26px;
+    }
+    
+    .car-container {
+        width: 150px;
+        height: 80px;
+    }
+    
+    .car {
+        width: 90px;
+        height: 45px;
+    }
+    
+    .loading-bar {
+        width: 150px;
+    }
+    
+    .loading-text {
+        font-size: 0.95em;
     }
 }
 
