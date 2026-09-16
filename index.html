@@ -7,33 +7,62 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- افکت موج کارتونی -->
-    <div class="cartoon-wave" id="cartoonWave">
-        <svg class="wave-svg" viewBox="0 0 1440 400" preserveAspectRatio="none">
-            <!-- لایه اول موج (تیره‌تر) -->
-            <path class="wave-path wave-1" d="M0,200 Q180,100 360,200 T720,200 T1080,200 T1440,200 L1440,400 L0,400 Z" fill="#1e90ff"></path>
-            <!-- لایه دوم موج (روشن‌تر) -->
-            <path class="wave-path wave-2" d="M0,220 Q180,120 360,220 T720,220 T1080,220 T1440,220 L1440,400 L0,400 Z" fill="#4da6ff"></path>
-            <!-- لایه سوم موج (روشن‌ترین) -->
-            <path class="wave-path wave-3" d="M0,240 Q180,140 360,240 T720,240 T1080,240 T1440,240 L1440,400 L0,400 Z" fill="#80c1ff"></path>
-            <!-- کف سفید روی موج -->
-            <path class="wave-foam" d="M0,200 Q180,100 360,200 T720,200 T1080,200 T1440,200" fill="none" stroke="white" stroke-width="4" opacity="0.7"></path>
-        </svg>
+    <!-- صفحه لودینگ -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <!-- ماشین متحرک -->
+            <div class="car-container">
+                <svg class="car" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- بدنه ماشین -->
+                    <path d="M10 40 L10 30 Q10 25 15 25 L25 25 L35 15 Q38 12 42 12 L78 12 Q82 12 85 15 L95 25 L105 25 Q110 25 110 30 L110 40 Z" 
+                          fill="#2c3e50" stroke="#1a252f" stroke-width="2"/>
+                    <!-- پنجره‌ها -->
+                    <path d="M38 15 L42 12 L58 12 L58 25 L35 25 Z" fill="#34495e" opacity="0.8"/>
+                    <path d="M62 12 L78 12 L82 15 L85 25 L62 25 Z" fill="#34495e" opacity="0.8"/>
+                    <!-- چرخ‌ها -->
+                    <circle cx="30" cy="42" r="8" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+                    <circle cx="30" cy="42" r="4" fill="#555"/>
+                    <circle cx="90" cy="42" r="8" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+                    <circle cx="90" cy="42" r="4" fill="#555"/>
+                    <!-- چراغ جلو -->
+                    <ellipse cx="108" cy="32" rx="3" ry="4" fill="#f39c12" opacity="0.9"/>
+                    <!-- چراغ عقب -->
+                    <ellipse cx="12" cy="32" rx="2" ry="3" fill="#e74c3c" opacity="0.9"/>
+                </svg>
+                
+                <!-- قطرات آب -->
+                <div class="water-drops">
+                    <span class="drop">💧</span>
+                    <span class="drop">💧</span>
+                    <span class="drop">💧</span>
+                    <span class="drop"></span>
+                    <span class="drop">💧</span>
+                </div>
+            </div>
+            
+            <!-- متن لودینگ -->
+            <div class="loading-text">
+                <p>Washing your experience...</p>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- محتوای اصلی سایت -->
-    <div class="fullscreen-bg" id="mainContent">
+    <div class="fullscreen-bg" id="mainContent" style="opacity: 0;">
         <img src="images/logo.jpg" alt="Carwash Vahid" class="bg-image">
         
         <div class="buttons-container">
-            <a href="https://instagram.com/YOUR_INSTAGRAM_ID" target="_blank" class="btn">
+            <a href="https://instagram.com/YOUR_INSTAGRAM_ID" target="_blank" class="btn instagram-btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                 </svg>
             </a>
-            <a href="https://maps.google.com/?q=YOUR_LOCATION" target="_blank" class="btn">
+            <a href="https://maps.google.com/?q=YOUR_LOCATION" target="_blank" class="btn location-btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                     <circle cx="12" cy="10" r="3"></circle>
@@ -43,16 +72,25 @@
     </div>
 
     <script>
-        // بعد از ۲ ثانیه، موج محو میشه
+        // مخفی کردن لودینگ بعد از ۲.۵ ثانیه
         window.addEventListener('load', function() {
             setTimeout(function() {
-                const cartoonWave = document.getElementById('cartoonWave');
-                cartoonWave.style.opacity = '0';
-                cartoonWave.style.transition = 'opacity 0.5s ease';
+                const loadingScreen = document.getElementById('loadingScreen');
+                const mainContent = document.getElementById('mainContent');
+                
+                // انیمیشن محو شدن لودینگ
+                loadingScreen.style.opacity = '0';
+                loadingScreen.style.transition = 'opacity 0.5s ease';
+                
+                // نمایش محتوای اصلی
+                mainContent.style.opacity = '1';
+                mainContent.style.transition = 'opacity 0.5s ease';
+                
+                // حذف کامل لودینگ از DOM
                 setTimeout(function() {
-                    cartoonWave.style.display = 'none';
+                    loadingScreen.style.display = 'none';
                 }, 500);
-            }, 2000);
+            }, 2500); // ۲.۵ ثانیه
         });
     </script>
 </body>
