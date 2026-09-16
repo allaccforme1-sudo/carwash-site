@@ -7,7 +7,51 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="fullscreen-bg">
+    <!-- صفحه لودینگ -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <!-- ماشین متحرک -->
+            <div class="car-container">
+                <svg class="car" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- بدنه ماشین -->
+                    <path d="M10 40 L10 30 Q10 25 15 25 L25 25 L35 15 Q38 12 42 12 L78 12 Q82 12 85 15 L95 25 L105 25 Q110 25 110 30 L110 40 Z" 
+                          fill="#2c3e50" stroke="#1a252f" stroke-width="2"/>
+                    <!-- پنجره‌ها -->
+                    <path d="M38 15 L42 12 L58 12 L58 25 L35 25 Z" fill="#34495e" opacity="0.8"/>
+                    <path d="M62 12 L78 12 L82 15 L85 25 L62 25 Z" fill="#34495e" opacity="0.8"/>
+                    <!-- چرخ‌ها -->
+                    <circle cx="30" cy="42" r="8" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+                    <circle cx="30" cy="42" r="4" fill="#555"/>
+                    <circle cx="90" cy="42" r="8" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+                    <circle cx="90" cy="42" r="4" fill="#555"/>
+                    <!-- چراغ جلو -->
+                    <ellipse cx="108" cy="32" rx="3" ry="4" fill="#f39c12" opacity="0.9"/>
+                    <!-- چراغ عقب -->
+                    <ellipse cx="12" cy="32" rx="2" ry="3" fill="#e74c3c" opacity="0.9"/>
+                </svg>
+                
+                <!-- قطرات آب -->
+                <div class="water-drops">
+                    <span class="drop">💧</span>
+                    <span class="drop">💧</span>
+                    <span class="drop">💧</span>
+                    <span class="drop"></span>
+                    <span class="drop">💧</span>
+                </div>
+            </div>
+            
+            <!-- متن لودینگ -->
+            <div class="loading-text">
+                <p>Washing your experience...</p>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- محتوای اصلی سایت -->
+    <div class="fullscreen-bg" id="mainContent" style="opacity: 0;">
         <img src="images/logo.jpg" alt="Carwash Vahid" class="bg-image">
         
         <div class="buttons-container">
@@ -26,5 +70,28 @@
             </a>
         </div>
     </div>
+
+    <script>
+        // مخفی کردن لودینگ بعد از ۲.۵ ثانیه
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                const mainContent = document.getElementById('mainContent');
+                
+                // انیمیشن محو شدن لودینگ
+                loadingScreen.style.opacity = '0';
+                loadingScreen.style.transition = 'opacity 0.5s ease';
+                
+                // نمایش محتوای اصلی
+                mainContent.style.opacity = '1';
+                mainContent.style.transition = 'opacity 0.5s ease';
+                
+                // حذف کامل لودینگ از DOM
+                setTimeout(function() {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 2500); // ۲.۵ ثانیه
+        });
+    </script>
 </body>
 </html>
