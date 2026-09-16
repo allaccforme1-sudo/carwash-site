@@ -44,30 +44,34 @@ html, body {
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    flex-direction: row; /* کنار هم */
+    flex-direction: row;
     gap: 20px;
     z-index: 10;
     padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* دکمه دایره‌ای توخالی با کادر چوبی */
+/* دکمه دایره‌ای کاملاً چوبی */
 .btn {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 66px; /* 10% بزرگتر از 60px */
+    height: 66px;
     border-radius: 50%;
     text-decoration: none;
     color: white;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    /* توخالی - پس‌زمینه شفاف */
-    background: rgba(0, 0, 0, 0.3);
-    /* کادر چوبی */
-    border: 2px solid #8B4513;
-    box-shadow: 0 0 15px rgba(139, 69, 19, 0.3);
+    /* گرادیان چوب طبیعی */
+    background: linear-gradient(145deg, #A0522D 0%, #8B4513 50%, #654321 100%);
+    /* کادر چوبی تیره */
+    border: 3px solid #4a2c17;
+    /* سایه چوبی */
+    box-shadow: 
+        0 5px 15px rgba(0,0,0,0.4),
+        inset 0 2px 4px rgba(255,255,255,0.1),
+        inset 0 -2px 4px rgba(0,0,0,0.3);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     animation: float 3s ease-in-out infinite;
@@ -75,13 +79,14 @@ html, body {
 
 /* آیکون SVG */
 .btn svg {
-    width: 26px;
-    height: 26px;
+    width: 29px; /* 10% بزرگتر از 26px */
+    height: 29px;
     transition: all 0.3s ease;
-    stroke: white;
+    stroke: #FFD700; /* طلایی */
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
 }
 
-/* افکت درخشش */
+/* افکت درخشش چوبی */
 .btn::before {
     content: '';
     position: absolute;
@@ -92,7 +97,7 @@ html, body {
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(139, 69, 19, 0.4),
+        rgba(255,215,0,0.3),
         transparent
     );
     transition: left 0.7s ease;
@@ -101,10 +106,12 @@ html, body {
 /* hover effects */
 .btn:hover {
     transform: translateY(-8px) scale(1.15);
-    border-color: #A0522D;
-    box-shadow: 0 15px 40px rgba(139, 69, 19, 0.5),
-                0 0 30px rgba(139, 69, 19, 0.4);
-    background: rgba(139, 69, 19, 0.2);
+    background: linear-gradient(145deg, #B8652F 0%, #A0522D 50%, #8B4513 100%);
+    border-color: #5a3a20;
+    box-shadow: 
+        0 15px 40px rgba(139, 69, 19, 0.6),
+        0 0 30px rgba(255, 215, 0, 0.3),
+        inset 0 2px 4px rgba(255,255,255,0.2);
 }
 
 .btn:hover::before {
@@ -113,7 +120,8 @@ html, body {
 
 .btn:hover svg {
     transform: scale(1.2) rotate(10deg);
-    stroke: #FFD700;
+    stroke: #FFF;
+    filter: drop-shadow(0 3px 5px rgba(0,0,0,0.5));
 }
 
 /* کلیک */
@@ -139,13 +147,13 @@ html, body {
     }
     
     .btn {
-        width: 55px;
-        height: 55px;
+        width: 60px;
+        height: 60px;
     }
     
     .btn svg {
-        width: 24px;
-        height: 24px;
+        width: 26px;
+        height: 26px;
     }
 }
 
@@ -156,12 +164,12 @@ html, body {
     }
     
     .btn {
-        width: 50px;
-        height: 50px;
+        width: 55px;
+        height: 55px;
     }
     
     .btn svg {
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        height: 24px;
     }
 }
