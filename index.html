@@ -7,8 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- افکت موج آب -->
-    <div class="water-wave" id="waterWave"></div>
+    <!-- افکت موج کارتونی -->
+    <div class="cartoon-wave" id="cartoonWave">
+        <svg class="wave-svg" viewBox="0 0 1440 400" preserveAspectRatio="none">
+            <!-- لایه اول موج (تیره‌تر) -->
+            <path class="wave-path wave-1" d="M0,200 Q180,100 360,200 T720,200 T1080,200 T1440,200 L1440,400 L0,400 Z" fill="#1e90ff"></path>
+            <!-- لایه دوم موج (روشن‌تر) -->
+            <path class="wave-path wave-2" d="M0,220 Q180,120 360,220 T720,220 T1080,220 T1440,220 L1440,400 L0,400 Z" fill="#4da6ff"></path>
+            <!-- لایه سوم موج (روشن‌ترین) -->
+            <path class="wave-path wave-3" d="M0,240 Q180,140 360,240 T720,240 T1080,240 T1440,240 L1440,400 L0,400 Z" fill="#80c1ff"></path>
+            <!-- کف سفید روی موج -->
+            <path class="wave-foam" d="M0,200 Q180,100 360,200 T720,200 T1080,200 T1440,200" fill="none" stroke="white" stroke-width="4" opacity="0.7"></path>
+        </svg>
+    </div>
 
     <!-- محتوای اصلی سایت -->
     <div class="fullscreen-bg" id="mainContent">
@@ -32,15 +43,16 @@
     </div>
 
     <script>
-        // بعد از ۱.۵ ثانیه، موج محو میشه
+        // بعد از ۲ ثانیه، موج محو میشه
         window.addEventListener('load', function() {
             setTimeout(function() {
-                const waterWave = document.getElementById('waterWave');
-                waterWave.style.opacity = '0';
+                const cartoonWave = document.getElementById('cartoonWave');
+                cartoonWave.style.opacity = '0';
+                cartoonWave.style.transition = 'opacity 0.5s ease';
                 setTimeout(function() {
-                    waterWave.style.display = 'none';
+                    cartoonWave.style.display = 'none';
                 }, 500);
-            }, 1500);
+            }, 2000);
         });
     </script>
 </body>
