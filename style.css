@@ -45,48 +45,56 @@ html, body {
     transform: translateX(-50%);
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 25px;
     z-index: 10;
     padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* دکمه دایره‌ای کاملاً چوبی */
+/* دکمه چوبی سه‌بعدی و حرفه‌ای */
 .btn {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 66px; /* 10% بزرگتر از 60px */
+    width: 66px; /* 10% بزرگتر */
     height: 66px;
     border-radius: 50%;
     text-decoration: none;
-    color: white;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    /* گرادیان چوب طبیعی */
-    background: linear-gradient(145deg, #A0522D 0%, #8B4513 50%, #654321 100%);
-    /* کادر چوبی تیره */
-    border: 3px solid #4a2c17;
-    /* سایه چوبی */
+    transition: all 0.3s ease;
+    
+    /* 1. بافت و رنگ چوب طبیعی (گرادیان دایره‌ای برای حالت کروی) */
+    background: radial-gradient(circle at 35% 35%, #a67c52, #8b5a2b, #5c3a21, #3e2723);
+    
+    /* 2. افکت بافت چوب (خطوط ریز) */
+    background-image: 
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px),
+        radial-gradient(circle at 35% 35%, #a67c52, #8b5a2b, #5c3a21, #3e2723);
+
+    /* 3. سایه‌های سه‌بعدی (برجسته و کنده‌کاری شده) */
     box-shadow: 
-        0 5px 15px rgba(0,0,0,0.4),
-        inset 0 2px 4px rgba(255,255,255,0.1),
-        inset 0 -2px 4px rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+        0 10px 20px rgba(0,0,0,0.7), /* سایه زیر دکمه */
+        inset 0 4px 8px rgba(255,255,255,0.3), /* نور لبه بالا */
+        inset 0 -5px 10px rgba(0,0,0,0.8), /* سایه لبه پایین */
+        inset 4px 0 8px rgba(0,0,0,0.5), /* سایه لبه چپ */
+        inset -4px 0 8px rgba(0,0,0,0.5); /* سایه لبه راست */
+        
+    /* 4. لبه تیره چوب */
+    border: 2px solid #2d1a11;
+    
     animation: float 3s ease-in-out infinite;
 }
 
-/* آیکون SVG */
+/* آیکون SVG - حالت حک شده یا برنجی */
 .btn svg {
-    width: 29px; /* 10% بزرگتر از 26px */
+    width: 29px;
     height: 29px;
     transition: all 0.3s ease;
-    stroke: #FFD700; /* طلایی */
-    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+    stroke: #e6c288; /* رنگ برنجی/طلایی کهنه */
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.8)); /* سایه زیر آیکون */
 }
 
-/* افکت درخشش چوبی */
+/* افکت درخشش متحرک روی چوب */
 .btn::before {
     content: '';
     position: absolute;
@@ -97,21 +105,25 @@ html, body {
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(255,215,0,0.3),
+        rgba(255,255,255,0.2),
         transparent
     );
-    transition: left 0.7s ease;
+    transition: left 0.6s ease;
 }
 
-/* hover effects */
+/* حالت هاور (وقتی موس میره روش) */
 .btn:hover {
-    transform: translateY(-8px) scale(1.15);
-    background: linear-gradient(145deg, #B8652F 0%, #A0522D 50%, #8B4513 100%);
-    border-color: #5a3a20;
+    transform: translateY(-8px) scale(1.1);
+    /* چوب کمی روشن‌تر میشه */
+    background-image: 
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px),
+        radial-gradient(circle at 35% 35%, #b88a60, #9c6633, #6b4426, #4a301a);
     box-shadow: 
-        0 15px 40px rgba(139, 69, 19, 0.6),
-        0 0 30px rgba(255, 215, 0, 0.3),
-        inset 0 2px 4px rgba(255,255,255,0.2);
+        0 15px 30px rgba(0,0,0,0.8),
+        inset 0 4px 8px rgba(255,255,255,0.4),
+        inset 0 -5px 10px rgba(0,0,0,0.8),
+        inset 4px 0 8px rgba(0,0,0,0.5),
+        inset -4px 0 8px rgba(0,0,0,0.5);
 }
 
 .btn:hover::before {
@@ -119,14 +131,18 @@ html, body {
 }
 
 .btn:hover svg {
-    transform: scale(1.2) rotate(10deg);
-    stroke: #FFF;
-    filter: drop-shadow(0 3px 5px rgba(0,0,0,0.5));
+    stroke: #fff; /* آیکون سفید و درخشان میشه */
+    transform: scale(1.15) rotate(10deg);
+    filter: drop-shadow(0 3px 4px rgba(0,0,0,0.9));
 }
 
-/* کلیک */
+/* حالت کلیک */
 .btn:active {
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+        0 5px 10px rgba(0,0,0,0.7),
+        inset 0 2px 4px rgba(255,255,255,0.2),
+        inset 0 -2px 5px rgba(0,0,0,0.8);
 }
 
 /* انیمیشن شناور */
@@ -143,7 +159,7 @@ html, body {
 @media (max-width: 480px) {
     .buttons-container {
         bottom: 40px;
-        gap: 15px;
+        gap: 20px;
     }
     
     .btn {
@@ -160,7 +176,7 @@ html, body {
 @media (max-width: 360px) {
     .buttons-container {
         bottom: 30px;
-        gap: 12px;
+        gap: 15px;
     }
     
     .btn {
