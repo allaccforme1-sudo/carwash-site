@@ -50,7 +50,7 @@ html, body {
     padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* دکمه چوبی واقعی با بافت */
+/* دکمه شیشه‌ای با حاشیه طلایی */
 .btn {
     position: relative;
     display: flex;
@@ -61,90 +61,33 @@ html, body {
     border-radius: 50%;
     text-decoration: none;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     
-    /* بافت چوب طبیعی با گرادیان‌های چندلایه */
-    background: 
-        /* لایه 1: رگه‌های چوب */
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 1px,
-            rgba(62, 39, 35, 0.15) 1px,
-            rgba(62, 39, 35, 0.15) 2px,
-            transparent 2px,
-            transparent 4px
-        ),
-        repeating-linear-gradient(
-            85deg,
-            transparent,
-            transparent 2px,
-            rgba(139, 90, 43, 0.1) 2px,
-            rgba(139, 90, 43, 0.1) 3px,
-            transparent 3px,
-            transparent 6px
-        ),
-        /* لایه 2: گرادیان اصلی چوب */
-        radial-gradient(
-            ellipse at 30% 30%,
-            #c4956a 0%,
-            #a67c52 20%,
-            #8b5a2b 40%,
-            #6b4423 60%,
-            #4a2f1d 80%,
-            #2d1a11 100%
-        );
+    /* پس‌زمینه شیشه‌ای مات */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     
-    /* سایه‌های کنده‌کاری شده */
+    /* حاشیه طلایی ظریف */
+    border: 1.5px solid rgba(212, 175, 55, 0.5);
+    
+    /* سایه نرم */
     box-shadow: 
-        /* سایه بیرونی */
-        0 8px 16px rgba(0,0,0,0.6),
-        0 4px 8px rgba(0,0,0,0.4),
-        /* سایه داخلی بالا (نور) */
-        inset 0 3px 6px rgba(255, 220, 180, 0.4),
-        /* سایه داخلی پایین (سایه) */
-        inset 0 -4px 8px rgba(0,0,0,0.7),
-        /* سایه داخلی چپ */
-        inset 3px 0 6px rgba(0,0,0,0.5),
-        /* سایه داخلی راست */
-        inset -3px 0 6px rgba(0,0,0,0.5),
-        /* حلقه داخلی برای عمق */
-        inset 0 0 20px rgba(0,0,0,0.3);
-    
-    /* لبه چوب */
-    border: 3px solid #1a0f0a;
+        0 8px 20px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
     
     animation: float 3s ease-in-out infinite;
 }
 
-/* لایه براق روی چوب */
-.btn::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 50%;
-    background: radial-gradient(
-        ellipse at 30% 30%,
-        rgba(255, 255, 255, 0.15) 0%,
-        transparent 50%
-    );
-    pointer-events: none;
-}
-
-/* آیکون SVG - حک شده در چوب */
+/* آیکون SVG - سفید و تمیز */
 .btn svg {
     width: 29px;
     height: 29px;
     transition: all 0.3s ease;
-    stroke: #3d2817; /* رنگ تیره مثل حکاکی */
-    stroke-width: 2.5;
+    stroke: #ffffff;
+    stroke-width: 2;
     fill: none;
-    filter: 
-        drop-shadow(0 1px 1px rgba(255, 200, 150, 0.3))
-        drop-shadow(0 -1px 1px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
 }
 
 /* افکت درخشش متحرک */
@@ -158,51 +101,38 @@ html, body {
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(255, 220, 180, 0.2),
+        rgba(212, 175, 55, 0.3),
         transparent
     );
-    transition: left 0.6s ease;
+    transition: left 0.7s ease;
+}
+
+/* لایه براق شیشه‌ای */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        transparent 100%
+    );
+    border-radius: 50% 50% 0 0;
+    pointer-events: none;
 }
 
 /* حالت هاور */
 .btn:hover {
-    transform: translateY(-8px) scale(1.1);
-    background: 
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 1px,
-            rgba(62, 39, 35, 0.2) 1px,
-            rgba(62, 39, 35, 0.2) 2px,
-            transparent 2px,
-            transparent 4px
-        ),
-        repeating-linear-gradient(
-            85deg,
-            transparent,
-            transparent 2px,
-            rgba(139, 90, 43, 0.15) 2px,
-            rgba(139, 90, 43, 0.15) 3px,
-            transparent 3px,
-            transparent 6px
-        ),
-        radial-gradient(
-            ellipse at 30% 30%,
-            #d4a57a 0%,
-            #b68c62 20%,
-            #9b6a3d 40%,
-            #7b5433 60%,
-            #5a3f2d 80%,
-            #3d2817 100%
-        );
+    transform: translateY(-8px) scale(1.15);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(212, 175, 55, 0.9);
     box-shadow: 
-        0 12px 24px rgba(0,0,0,0.7),
-        0 6px 12px rgba(0,0,0,0.5),
-        inset 0 3px 6px rgba(255, 220, 180, 0.5),
-        inset 0 -4px 8px rgba(0,0,0,0.8),
-        inset 3px 0 6px rgba(0,0,0,0.6),
-        inset -3px 0 6px rgba(0,0,0,0.6),
-        inset 0 0 20px rgba(0,0,0,0.4);
+        0 15px 35px rgba(0, 0, 0, 0.5),
+        0 0 25px rgba(212, 175, 55, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 .btn:hover::before {
@@ -210,21 +140,14 @@ html, body {
 }
 
 .btn:hover svg {
-    stroke: #2d1a11;
-    filter: 
-        drop-shadow(0 2px 2px rgba(255, 200, 150, 0.4))
-        drop-shadow(0 -2px 2px rgba(0, 0, 0, 0.6));
+    stroke: #d4af37; /* طلایی */
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5));
 }
 
 /* حالت کلیک */
 .btn:active {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 
-        0 4px 8px rgba(0,0,0,0.6),
-        inset 0 2px 4px rgba(255, 200, 150, 0.3),
-        inset 0 -3px 6px rgba(0,0,0,0.8),
-        inset 2px 0 4px rgba(0,0,0,0.6),
-        inset -2px 0 4px rgba(0,0,0,0.6);
+    transform: translateY(-3px) scale(1.05);
 }
 
 /* انیمیشن شناور */
