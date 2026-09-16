@@ -7,58 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- صفحه لودینگ -->
-    <div class="loading-screen" id="loadingScreen">
-        
-        <!-- موج‌های آب -->
-        <div class="waves-container">
-            <svg class="wave wave-1" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                <path d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="rgba(64, 164, 255, 0.6)"></path>
-            </svg>
-            <svg class="wave wave-2" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                <path d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="rgba(100, 180, 255, 0.4)"></path>
-            </svg>
-            <svg class="wave wave-3" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                <path d="M0,256L48,240C96,224,192,192,288,181.3C384,171,480,181,576,202.7C672,224,768,256,864,250.7C960,245,1056,203,1152,197.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="rgba(150, 210, 255, 0.3)"></path>
-            </svg>
-        </div>
-
-        <!-- محتوای لودینگ -->
-        <div class="loading-content">
-            <div class="car-container">
-                <svg class="car" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 40 L10 30 Q10 25 15 25 L25 25 L35 15 Q38 12 42 12 L78 12 Q82 12 85 15 L95 25 L105 25 Q110 25 110 30 L110 40 Z" 
-                          fill="#2c3e50" stroke="#1a252f" stroke-width="2"/>
-                    <path d="M38 15 L42 12 L58 12 L58 25 L35 25 Z" fill="#34495e" opacity="0.8"/>
-                    <path d="M62 12 L78 12 L82 15 L85 25 L62 25 Z" fill="#34495e" opacity="0.8"/>
-                    <circle cx="30" cy="42" r="8" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
-                    <circle cx="30" cy="42" r="4" fill="#555"/>
-                    <circle cx="90" cy="42" r="8" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
-                    <circle cx="90" cy="42" r="4" fill="#555"/>
-                    <ellipse cx="108" cy="32" rx="3" ry="4" fill="#f39c12" opacity="0.9"/>
-                    <ellipse cx="12" cy="32" rx="2" ry="3" fill="#e74c3c" opacity="0.9"/>
-                </svg>
-                
-                <div class="water-drops">
-                    <span class="drop"></span>
-                    <span class="drop">💧</span>
-                    <span class="drop">💧</span>
-                    <span class="drop">💧</span>
-                    <span class="drop">💧</span>
-                </div>
-            </div>
-            
-            <div class="loading-text">
-                <p>Washing your experience...</p>
-                <div class="loading-bar">
-                    <div class="loading-progress"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- افکت موج آب -->
+    <div class="water-wave" id="waterWave"></div>
 
     <!-- محتوای اصلی سایت -->
-    <div class="fullscreen-bg" id="mainContent" style="opacity: 0;">
+    <div class="fullscreen-bg" id="mainContent">
         <img src="images/logo.jpg" alt="Carwash Vahid" class="bg-image">
         
         <div class="buttons-container">
@@ -79,21 +32,15 @@
     </div>
 
     <script>
+        // بعد از ۱.۵ ثانیه، موج محو میشه
         window.addEventListener('load', function() {
             setTimeout(function() {
-                const loadingScreen = document.getElementById('loadingScreen');
-                const mainContent = document.getElementById('mainContent');
-                
-                loadingScreen.style.opacity = '0';
-                loadingScreen.style.transition = 'opacity 0.8s ease';
-                
-                mainContent.style.opacity = '1';
-                mainContent.style.transition = 'opacity 0.8s ease';
-                
+                const waterWave = document.getElementById('waterWave');
+                waterWave.style.opacity = '0';
                 setTimeout(function() {
-                    loadingScreen.style.display = 'none';
-                }, 800);
-            }, 3000);
+                    waterWave.style.display = 'none';
+                }, 500);
+            }, 1500);
         });
     </script>
 </body>
