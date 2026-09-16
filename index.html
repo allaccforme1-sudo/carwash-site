@@ -9,38 +9,45 @@
 <body>
     <!-- صفحه لودینگ -->
     <div class="loading-screen" id="loadingScreen">
+        
+        <!-- موج‌های آب -->
+        <div class="waves-container">
+            <svg class="wave wave-1" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="rgba(64, 164, 255, 0.6)"></path>
+            </svg>
+            <svg class="wave wave-2" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="rgba(100, 180, 255, 0.4)"></path>
+            </svg>
+            <svg class="wave wave-3" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path d="M0,256L48,240C96,224,192,192,288,181.3C384,171,480,181,576,202.7C672,224,768,256,864,250.7C960,245,1056,203,1152,197.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="rgba(150, 210, 255, 0.3)"></path>
+            </svg>
+        </div>
+
+        <!-- محتوای لودینگ -->
         <div class="loading-content">
-            <!-- ماشین متحرک -->
             <div class="car-container">
                 <svg class="car" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
-                    <!-- بدنه ماشین -->
                     <path d="M10 40 L10 30 Q10 25 15 25 L25 25 L35 15 Q38 12 42 12 L78 12 Q82 12 85 15 L95 25 L105 25 Q110 25 110 30 L110 40 Z" 
                           fill="#2c3e50" stroke="#1a252f" stroke-width="2"/>
-                    <!-- پنجره‌ها -->
                     <path d="M38 15 L42 12 L58 12 L58 25 L35 25 Z" fill="#34495e" opacity="0.8"/>
                     <path d="M62 12 L78 12 L82 15 L85 25 L62 25 Z" fill="#34495e" opacity="0.8"/>
-                    <!-- چرخ‌ها -->
                     <circle cx="30" cy="42" r="8" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
                     <circle cx="30" cy="42" r="4" fill="#555"/>
                     <circle cx="90" cy="42" r="8" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
                     <circle cx="90" cy="42" r="4" fill="#555"/>
-                    <!-- چراغ جلو -->
                     <ellipse cx="108" cy="32" rx="3" ry="4" fill="#f39c12" opacity="0.9"/>
-                    <!-- چراغ عقب -->
                     <ellipse cx="12" cy="32" rx="2" ry="3" fill="#e74c3c" opacity="0.9"/>
                 </svg>
                 
-                <!-- قطرات آب -->
                 <div class="water-drops">
-                    <span class="drop">💧</span>
-                    <span class="drop">💧</span>
-                    <span class="drop">💧</span>
                     <span class="drop"></span>
+                    <span class="drop">💧</span>
+                    <span class="drop">💧</span>
+                    <span class="drop">💧</span>
                     <span class="drop">💧</span>
                 </div>
             </div>
             
-            <!-- متن لودینگ -->
             <div class="loading-text">
                 <p>Washing your experience...</p>
                 <div class="loading-bar">
@@ -55,14 +62,14 @@
         <img src="images/logo.jpg" alt="Carwash Vahid" class="bg-image">
         
         <div class="buttons-container">
-            <a href="https://instagram.com/YOUR_INSTAGRAM_ID" target="_blank" class="btn instagram-btn">
+            <a href="https://instagram.com/YOUR_INSTAGRAM_ID" target="_blank" class="btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                 </svg>
             </a>
-            <a href="https://maps.google.com/?q=YOUR_LOCATION" target="_blank" class="btn location-btn">
+            <a href="https://maps.google.com/?q=YOUR_LOCATION" target="_blank" class="btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                     <circle cx="12" cy="10" r="3"></circle>
@@ -72,25 +79,21 @@
     </div>
 
     <script>
-        // مخفی کردن لودینگ بعد از ۲.۵ ثانیه
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loadingScreen = document.getElementById('loadingScreen');
                 const mainContent = document.getElementById('mainContent');
                 
-                // انیمیشن محو شدن لودینگ
                 loadingScreen.style.opacity = '0';
-                loadingScreen.style.transition = 'opacity 0.5s ease';
+                loadingScreen.style.transition = 'opacity 0.8s ease';
                 
-                // نمایش محتوای اصلی
                 mainContent.style.opacity = '1';
-                mainContent.style.transition = 'opacity 0.5s ease';
+                mainContent.style.transition = 'opacity 0.8s ease';
                 
-                // حذف کامل لودینگ از DOM
                 setTimeout(function() {
                     loadingScreen.style.display = 'none';
-                }, 500);
-            }, 2500); // ۲.۵ ثانیه
+                }, 800);
+            }, 3000);
         });
     </script>
 </body>
