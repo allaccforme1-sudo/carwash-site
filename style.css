@@ -37,20 +37,20 @@ html, body {
     pointer-events: none;
 }
 
-/* دکمه‌ها - زیر هم */
+/* دکمه‌ها - کنار هم */
 .buttons-container {
     position: absolute;
     bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: row; /* کنار هم */
+    gap: 20px;
     z-index: 10;
     padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* دکمه دایره‌ای */
+/* دکمه دایره‌ای توخالی با کادر چوبی */
 .btn {
     position: relative;
     display: flex;
@@ -63,8 +63,11 @@ html, body {
     color: white;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* توخالی - پس‌زمینه شفاف */
+    background: rgba(0, 0, 0, 0.3);
+    /* کادر چوبی */
+    border: 2px solid #8B4513;
+    box-shadow: 0 0 15px rgba(139, 69, 19, 0.3);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     animation: float 3s ease-in-out infinite;
@@ -75,23 +78,7 @@ html, body {
     width: 26px;
     height: 26px;
     transition: all 0.3s ease;
-}
-
-/* اینستاگرام - گرادیان */
-.instagram-btn {
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    background-size: 200% 200%;
-    animation: float 3s ease-in-out infinite, gradientShift 3s ease infinite;
-    border: none;
-}
-
-/* لوکیشن - گرادیان آبی */
-.location-btn {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    background-size: 200% 200%;
-    animation: float 3s ease-in-out infinite, gradientShift 3s ease infinite;
-    animation-delay: 0.5s, 1.5s;
-    border: none;
+    stroke: white;
 }
 
 /* افکت درخشش */
@@ -105,7 +92,7 @@ html, body {
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(255,255,255,0.4),
+        rgba(139, 69, 19, 0.4),
         transparent
     );
     transition: left 0.7s ease;
@@ -114,8 +101,10 @@ html, body {
 /* hover effects */
 .btn:hover {
     transform: translateY(-8px) scale(1.15);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6),
-                0 0 30px rgba(255,255,255,0.3);
+    border-color: #A0522D;
+    box-shadow: 0 15px 40px rgba(139, 69, 19, 0.5),
+                0 0 30px rgba(139, 69, 19, 0.4);
+    background: rgba(139, 69, 19, 0.2);
 }
 
 .btn:hover::before {
@@ -124,6 +113,7 @@ html, body {
 
 .btn:hover svg {
     transform: scale(1.2) rotate(10deg);
+    stroke: #FFD700;
 }
 
 /* کلیک */
@@ -141,24 +131,11 @@ html, body {
     }
 }
 
-/* انیمیشن گرادیان */
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
 /* ریسپانسیو موبایل */
 @media (max-width: 480px) {
     .buttons-container {
         bottom: 40px;
-        gap: 12px;
+        gap: 15px;
     }
     
     .btn {
@@ -175,6 +152,7 @@ html, body {
 @media (max-width: 360px) {
     .buttons-container {
         bottom: 30px;
+        gap: 12px;
     }
     
     .btn {
