@@ -13,178 +13,33 @@ html, body {
     background: #000;
 }
 
-/* ===== صفحه لودینگ ===== */
-.loading-screen {
+/* ===== افکت موج آب ===== */
+.water-wave {
     position: fixed;
     top: 0;
-    left: 0;
+    left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, #0a0a1a 0%, #1a2a3a 50%, #0a1520 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(64, 164, 255, 0.3) 20%,
+        rgba(100, 180, 255, 0.6) 50%,
+        rgba(64, 164, 255, 0.3) 80%,
+        transparent 100%
+    );
     z-index: 9999;
-    overflow: hidden;
-}
-
-/* ===== موج‌های آب ===== */
-.waves-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.wave {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-}
-
-/* موج اول - سریع‌ترین */
-.wave-1 {
-    animation: waveMove 6s linear infinite;
-    z-index: 3;
-}
-
-/* موج دوم - متوسط */
-.wave-2 {
-    animation: waveMove 8s linear infinite;
-    z-index: 2;
-}
-
-/* موج سوم - کندترین */
-.wave-3 {
-    animation: waveMove 10s linear infinite;
-    z-index: 1;
-}
-
-@keyframes waveMove {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-/* محتوای لودینگ */
-.loading-content {
-    text-align: center;
-    position: relative;
-    z-index: 10;
-}
-
-/* ماشین متحرک */
-.car-container {
-    position: relative;
-    width: 200px;
-    height: 100px;
-    margin: 0 auto 30px;
-}
-
-.car {
-    width: 120px;
-    height: 60px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: carDrive 2s ease-in-out infinite;
-}
-
-@keyframes carDrive {
-    0%, 100% {
-        transform: translate(-50%, -50%) translateY(0px);
-    }
-    50% {
-        transform: translate(-50%, -50%) translateY(-8px);
-    }
-}
-
-/* قطرات آب */
-.water-drops {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    animation: waveSlide 1.5s ease-in-out forwards;
     pointer-events: none;
 }
 
-.drop {
-    position: absolute;
-    font-size: 18px;
-    opacity: 0;
-    animation: waterDrop 1.5s ease-in-out infinite;
-}
-
-.drop:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-.drop:nth-child(2) { top: 30%; right: 15%; animation-delay: 0.3s; }
-.drop:nth-child(3) { top: 50%; left: 5%; animation-delay: 0.6s; }
-.drop:nth-child(4) { top: 40%; right: 10%; animation-delay: 0.9s; }
-.drop:nth-child(5) { top: 60%; left: 20%; animation-delay: 1.2s; }
-
-@keyframes waterDrop {
+@keyframes waveSlide {
     0% {
-        opacity: 0;
-        transform: translateY(-20px) scale(0.5);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+        left: -100%;
     }
     100% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.5);
+        left: 100%;
     }
-}
-
-/* متن لودینگ */
-.loading-text {
-    color: white;
-    font-size: 1.1em;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-}
-
-.loading-text p {
-    margin-bottom: 15px;
-    animation: textPulse 1.5s ease-in-out infinite;
-}
-
-@keyframes textPulse {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
-}
-
-/* نوار پیشرفت */
-.loading-bar {
-    width: 200px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
-    overflow: hidden;
-    margin: 0 auto;
-}
-
-.loading-progress {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, #40a4ff, #64b4ff, #96d2ff);
-    border-radius: 2px;
-    animation: loadingProgress 3s ease-in-out forwards;
-}
-
-@keyframes loadingProgress {
-    0% { width: 0%; }
-    100% { width: 100%; }
 }
 
 /* ===== محتوای اصلی سایت ===== */
@@ -327,28 +182,6 @@ html, body {
     .btn svg {
         width: 26px;
         height: 26px;
-    }
-    
-    .car-container {
-        width: 150px;
-        height: 80px;
-    }
-    
-    .car {
-        width: 90px;
-        height: 45px;
-    }
-    
-    .loading-bar {
-        width: 150px;
-    }
-    
-    .loading-text {
-        font-size: 0.95em;
-    }
-    
-    .waves-container {
-        height: 30%;
     }
 }
 
