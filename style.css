@@ -1,30 +1,189 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carwash Vahid</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="fullscreen-bg">
-        <img src="images/logo.jpg" alt="Carwash Vahid" class="bg-image">
-        
-        <div class="buttons-container">
-            <a href="https://instagram.com/YOUR_INSTAGRAM_ID" target="_blank" class="btn instagram-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-            </a>
-            <a href="https://maps.google.com/?q=YOUR_LOCATION" target="_blank" class="btn location-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-            </a>
-        </div>
-    </div>
-</body>
-</html>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    background: #000;
+}
+
+.fullscreen-bg {
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+.bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: high-quality;
+    -webkit-user-drag: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* دکمه‌ها - زیر هم */
+.buttons-container {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* دکمه دایره‌ای */
+.btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-decoration: none;
+    color: white;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: float 3s ease-in-out infinite;
+}
+
+/* آیکون SVG */
+.btn svg {
+    width: 26px;
+    height: 26px;
+    transition: all 0.3s ease;
+}
+
+/* اینستاگرام - گرادیان */
+.instagram-btn {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    background-size: 200% 200%;
+    animation: float 3s ease-in-out infinite, gradientShift 3s ease infinite;
+    border: none;
+}
+
+/* لوکیشن - گرادیان آبی */
+.location-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    background-size: 200% 200%;
+    animation: float 3s ease-in-out infinite, gradientShift 3s ease infinite;
+    animation-delay: 0.5s, 1.5s;
+    border: none;
+}
+
+/* افکت درخشش */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.4),
+        transparent
+    );
+    transition: left 0.7s ease;
+}
+
+/* hover effects */
+.btn:hover {
+    transform: translateY(-8px) scale(1.15);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6),
+                0 0 30px rgba(255,255,255,0.3);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover svg {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* کلیک */
+.btn:active {
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* انیمیشن شناور */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* انیمیشن گرادیان */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ریسپانسیو موبایل */
+@media (max-width: 480px) {
+    .buttons-container {
+        bottom: 40px;
+        gap: 12px;
+    }
+    
+    .btn {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .btn svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 360px) {
+    .buttons-container {
+        bottom: 30px;
+    }
+    
+    .btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .btn svg {
+        width: 22px;
+        height: 22px;
+    }
+}
